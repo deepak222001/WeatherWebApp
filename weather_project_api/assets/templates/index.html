@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            min-height: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+        .header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 75px;
+            margin-bottom: 20px;
+        }
+        .weather-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .weather-card {
+            background-color: #ffffff;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .footer {
+            margin-top: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Weather App</h1>
+            <p>Note:Allow location access</p>
+        </div>
+
+        <div class="weather-container">
+            <div class="weather-card">
+                <h3>Weather</h3>
+                <form method="POST">
+                    {% csrf_token %}
+                    <input name="city" id="city" required type="text" placeholder="Enter City">
+                    <button type="submit">Show Weather</button>
+                </form>
+            </div>
+        </div>
+        {% if weath %}
+        <div class="weather-container">
+            <div class="weather-card">
+                <p>Current weather: <strong>{{ weath }}</strong></p>
+            </div>
+        </div>
+        {% endif %}
+        <div class="footer"></div>
+    </div>
+</body>
+</html>
